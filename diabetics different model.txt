@@ -1,0 +1,198 @@
+1. model
+
+import streamlit as st
+import pickle
+
+
+pickle_in = open('log.pkl', 'rb')
+log = pickle.load(pickle_in)
+
+
+def diabetic_prediction(age, time_in_hospital, num_lab_procedures, num_procedures, num_medications, number_emergency,
+                        number_patients, number_diagnoses, A1Cresult, change, max_glu_serum, diabetesMed, count, steady, up,
+                        down, race_AfricanAmerican, race_Asian, race_Caucasian, race_Hispanic, race_Other,
+                        gender_Female,
+                        gender_Male, gender_Unknown, admission_type_id_Elective, admission_type_id_Emergency,
+                        admission_type_id_NewBorn, admission_type_id_NotAvailable, admission_type_id_TraumaCenter,
+                        discharge_disposition_id_Dead, discharge_disposition_id_Dischargedtohome,
+                        discharge_disposition_id_Other,
+                        discharge_disposition_id_Transferred, admission_source_id_EmergencyRoom,
+                        admission_source_id_NewBorn,
+                        admission_source_id_Other, admission_source_id_Referral, admission_source_id_Transfer):
+
+    diabetic_prediction = log.predict([[age, time_in_hospital, num_lab_procedures, num_procedures, num_medications,
+                                        number_emergency, number_patients, number_diagnoses, A1Cresult, change, max_glu_serum,
+                                        diabetesMed, count, steady, up, down, race_AfricanAmerican, race_Asian,
+                                        race_Caucasian, race_Hispanic, race_Other, gender_Female, gender_Male,
+                                        gender_Unknown, admission_type_id_Elective, admission_type_id_Emergency,
+                                        admission_type_id_NewBorn, admission_type_id_NotAvailable,
+                                        admission_type_id_TraumaCenter, discharge_disposition_id_Dead,
+                                        discharge_disposition_id_Dischargedtohome, discharge_disposition_id_Other,
+                                        discharge_disposition_id_Transferred, admission_source_id_EmergencyRoom,
+                                        admission_source_id_NewBorn, admission_source_id_Other,
+                                        admission_source_id_Referral, admission_source_id_Transfer]])
+    print(diabetic_prediction)
+    return diabetic_prediction
+
+def main():
+    st.title("Diabetics Readmitted Or Not")
+    html_temp = """
+     <div style="background-color:teal ;padding:10px">
+     <h2 style="color:white;text-align:center;">Diabetes Predictor ML App</h2>
+     </div>
+     """
+    st.markdown(html_temp, unsafe_allow_html=True)
+    age = st.text_input('age', "Type Here")
+    time_in_hospital = st.text_input('time_in_hospital', "Type Here")
+    num_lab_procedures = st.text_input('num_lab_procedures', "Type Here")
+    num_procedures = st.text_input('num_procedures', "Type Here")
+    num_medications = st.text_input('num_medications', "Type Here")
+    number_emergency = st.text_input('number_emergency', "Type Here")
+    number_patients = st.text_input('number_patients', "Type Here")
+    number_diagnoses = st.text_input('number_diagnoses', "Type Here")
+    A1Cresult = st.text_input('A1Cresult', "Type Here")
+    change = st.text_input('change', "Type Here")
+    max_glu_serum = st.text_input('max_glu_serum', "Type Here")
+    diabetesMed = st.text_input('diabetesMed', "Type Here")
+    count = st.text_input('count', "Type Here")
+    steady = st.text_input('steady', "Type Here")
+    up = st.text_input('up', "Type Here")
+    down = st.text_input('down', "Type Here")
+    race_AfricanAmerican = st.text_input('race_AfricanAmerican', "Type Here")
+    race_Asian = st.text_input('race_Asian', "Type Here")
+    race_Caucasian = st.text_input('race_Caucasian', "Type Here")
+    race_Hispanic = st.text_input('race_Hispanic', "Type Here")
+    race_Other = st.text_input('race_Other', "Type Here")
+    gender_Female = st.text_input('gender_Female', "Type Here")
+    gender_Male = st.text_input('gender_Male', "Type Here")
+    gender_Unknown = st.text_input('gender_Unknown', "Type Here")
+    admission_type_id_Elective = st.text_input('admission_type_id_Elective', "Type Here")
+    admission_type_id_Emergency = st.text_input('admission_type_id_Emergency', "Type Here")
+    admission_type_id_NewBorn =st.text_input('admission_type_id_NewBorn', "Type Here")
+    admission_type_id_NotAvailable = st.text_input('admission_type_id_NotAvailable', "Type Here")
+    admission_type_id_TraumaCenter = st.text_input('admission_type_id_TraumaCenter', "Type Here")
+    discharge_disposition_id_Dead = st.text_input('discharge_disposition_id_Dead', "Type Here")
+    discharge_disposition_id_Dischargedtohome = st.text_input('discharge_disposition_id_Dischargedtohome', "Type Here")
+    discharge_disposition_id_Other = st.text_input('discharge_disposition_id_Other', "Type Here")
+    discharge_disposition_id_Transferred = st.text_input('discharge_disposition_id_Transferred	', "Type Here")
+    admission_source_id_EmergencyRoom = st.text_input('admission_source_id_EmergencyRoom', "Type Here")
+    admission_source_id_NewBorn = st.text_input('admission_source_id_NewBorn', "Type Here")
+    admission_source_id_Other = st.text_input('admission_source_id_Other', "Type Here")
+    admission_source_id_Referral = st.text_input('admission_source_id_Referral', "Type Here")
+    admission_source_id_Transfer = st.text_input('admission_source_id_Transfer', "Type Here")
+    result = ""
+    if st.button("Predict"):
+        result = diabetic_prediction(age, time_in_hospital, num_lab_procedures, num_procedures, num_medications,
+                                     number_emergency, number_patients, number_diagnoses, A1Cresult, change, max_glu_serum,
+                                     diabetesMed, count, steady, up, down, race_AfricanAmerican, race_Asian,
+                                     race_Caucasian, race_Hispanic, race_Other, gender_Female, gender_Male,
+                                     gender_Unknown, admission_type_id_Elective, admission_type_id_Emergency,
+                                     admission_type_id_NewBorn, admission_type_id_NotAvailable,
+                                     admission_type_id_TraumaCenter, discharge_disposition_id_Dead,
+                                     discharge_disposition_id_Dischargedtohome, discharge_disposition_id_Other,
+                                     discharge_disposition_id_Transferred, admission_source_id_EmergencyRoom,
+                                     admission_source_id_NewBorn, admission_source_id_Other,
+                                     admission_source_id_Referral, admission_source_id_Transfer)
+
+
+    st.success('The output is {}'.format(result))
+
+    if st.button("Thanks"):
+        st.balloons()
+        st.info("Thank u")
+
+    st.sidebar.header("About App")
+    st.sidebar.info("Checking the patient is readmitted or not through diabetics")
+
+    st.sidebar.header("About")
+    st.sidebar.markdown("[LinkedInProfile](""https://www.linkedin.com/in/ashish-kapasiya-b89892138/"")")
+    st.sidebar.markdown("[GithhubProfile](""https://github.com/Ashishkapasiya"")")
+    st.sidebar.markdown("[KaggleInProfile](""https://www.kaggle.com/ashishkapasiya"")")
+
+    st.sidebar.text("Built with Streamlit")
+    st.sidebar.text("Maintained by Ashish Kapasiya")
+
+if __name__ == '__main__':
+    main()
+
+2.model
+
+import streamlit as st
+import pickle
+
+pipe = pickle.load(open('pipe.pkl', 'rb'))
+df = pickle.load(open('df.pkl', 'rb'))
+
+
+def diabetic_prediction(race, gender, age, admission_type_id, discharge_disposition_id, admission_source_id,
+                        time_in_hospital, num_lab_procedures, num_procedures, num_medications, number_emergency,
+                        number_diagnoses, max_glu_serum, A1Cresult, change, diabetesMed, count, number_patients,
+                        steady, up, down):
+
+
+    diabetic_prediction = pipe.predict([[race, gender, age, admission_type_id, discharge_disposition_id, admission_source_id,
+                                         time_in_hospital, num_lab_procedures, num_procedures, num_medications,
+                                        number_emergency, number_diagnoses, max_glu_serum, A1Cresult, change,
+                                        diabetesMed, count, number_patients, steady, up, down]])
+    print(diabetic_prediction)
+    return diabetic_prediction
+
+def main():
+    st.title("Diabetics Readmitted Or Not")
+    html_temp = """
+     <div style="background-color:teal ;padding:10px">
+     <h2 style="color:white;text-align:center;">Diabetes Predictor ML App</h2>
+     </div>
+     """
+    st.markdown(html_temp, unsafe_allow_html=True)
+    activities = ['Logistic Regression', 'DecisionTreeClassifier', 'RandomForestClassifier', 'XGBClassifier']
+    option = st.sidebar.selectbox('Which model would you like to use?', activities)
+    st.subheader(option)
+    race = st.selectbox('race', df['race'].unique())
+    gender = st.selectbox('gender', df['gender'].unique())
+    age = st.text_input('age', "Type Here")
+    admission_type_id = st.selectbox('admission_type_id', df['admission_type_id'].unique())
+    discharge_disposition_id = st.selectbox('discharge_disposition_id', df['discharge_disposition_id'].unique())
+    admission_source_id = st.selectbox('admission_source_id', df['admission_source_id'].unique())
+    time_in_hospital = st.text_input('time_in_hospital', "Type Here")
+    num_lab_procedures = st.text_input('num_lab_procedures', "Type Here")
+    num_procedures = st.text_input('num_procedures', "Type Here")
+    num_medications = st.text_input('num_medications', "Type Here")
+    number_emergency = st.text_input('number_emergency', "Type Here")
+    number_diagnoses = st.text_input('number_diagnoses', "Type Here")
+    max_glu_serum = st.text_input('max_glu_serum', "Type Here")
+    A1Cresult = st.text_input('A1Cresult', "Type Here")
+    change = st.text_input('change', "Type Here")
+    diabetesMed = st.text_input('diabetesMed', "Type Here")
+    count = st.text_input('count', "Type Here")
+    number_patients = st.text_input('number_patients', "Type Here")
+    steady = st.text_input('steady', "Type Here")
+    up = st.text_input('up', "Type Here")
+    down = st.text_input('down', "Type Here")
+
+    result = ""
+    if st.button("Predict"):
+        result = diabetic_prediction(race, gender, age, admission_type_id, discharge_disposition_id, admission_source_id,
+                                         time_in_hospital, num_lab_procedures, num_procedures, num_medications,
+                                        number_emergency, number_diagnoses, max_glu_serum, A1Cresult, change,
+                                        diabetesMed, count, number_patients, steady, up, down)
+
+    st.success('The output is {}'.format(result))
+
+    if st.button("Thanks"):
+        st.balloons()
+        st.info("Thank u")
+
+    st.sidebar.header("About App")
+    st.sidebar.info("Checking the patient is readmitted or not through diabetics")
+
+    st.sidebar.header("About")
+    st.sidebar.markdown("[LinkedInProfile](""https://www.linkedin.com/in/ashish-kapasiya-b89892138/"")")
+    st.sidebar.markdown("[GithhubProfile](""https://github.com/Ashishkapasiya"")")
+    st.sidebar.markdown("[KaggleInProfile](""https://www.kaggle.com/ashishkapasiya"")")
+
+    st.sidebar.text("Built with Streamlit")
+    st.sidebar.text("Maintained by Ashish Kapasiya")
+
+if __name__ == '__main__':
+    main()
